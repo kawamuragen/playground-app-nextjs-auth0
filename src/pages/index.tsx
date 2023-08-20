@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Button, Code, Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 import { Box, Heading, Stack, StackDivider, Text, Wrap } from "@chakra-ui/layout";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,11 +48,11 @@ export default function Home() {
           ) : user ? (
             <Box w="100%">
               <Stack spacing={4} align="center" pb={6}>
-                <a href="/api/auth/logout">
+                <Link href="/api/auth/logout">
                   <Button variant="solid" colorScheme="blackAlpha" size="lg">
                     ログアウト
                   </Button>
-                </a>
+                </Link>
               </Stack>
               <Card>
                 <CardHeader>
@@ -93,11 +94,11 @@ export default function Home() {
           ) : (
             <Box w="100%">
               <Stack spacing={4} align="center" pb={6}>
-                <a href="/api/auth/login">
+                <Link href="/api/auth/login">
                   <Button variant="solid" colorScheme="blackAlpha" size="lg">
                     ログイン
                   </Button>
-                </a>
+                </Link>
               </Stack>
               <Card>
                 <CardHeader>

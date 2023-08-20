@@ -13,14 +13,14 @@ const Header: FC = () => {
   if (user) {
     return (
       <header>
-        Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
+        Welcome {user.name}! <Link href="/api/auth/logout">Logout</Link>
       </header>
     );
   }
 
   return (
     <header>
-      <a href="/api/auth/login">Login</a>
+      <Link href="/api/auth/login">Login</Link>
     </header>
   );
 };
