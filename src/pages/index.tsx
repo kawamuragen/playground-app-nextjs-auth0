@@ -1,11 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
+
+import LoginStatCard from "@/components/LoginStatCard";
 import styles from "@/styles/Home.module.css";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { Button, Code, Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Box, Heading, Stack, StackDivider, Text, Wrap } from "@chakra-ui/layout";
-import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,103 +41,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.center}>
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : user ? (
-            <Box w="100%">
-              <Stack spacing={4} align="center" pb={6}>
-                <Link href="/api/auth/logout">
-                  <Button variant="solid" colorScheme="blackAlpha" size="lg">
-                    ログアウト
-                  </Button>
-                </Link>
-              </Stack>
-              <Card>
-                <CardHeader>
-                  <Wrap>
-                    <Heading size="md">ログインしました。ようこそ！</Heading>
-                  </Wrap>
-                </CardHeader>
-
-                <CardBody>
-                  <Stack divider={<StackDivider />} spacing="4">
-                    <Box>
-                      <Heading size="xs" textTransform="uppercase">
-                        ユーザー名
-                      </Heading>
-                      <Text pt="2" fontSize="sm">
-                        {user.name}
-                      </Text>
-                    </Box>
-                    <Box>
-                      <Heading size="xs" textTransform="uppercase">
-                        メールアドレス
-                      </Heading>
-                      <Text pt="2" fontSize="sm">
-                        {user.email}
-                      </Text>
-                    </Box>
-                    <Box>
-                      <Heading size="xs" textTransform="uppercase">
-                        ユーザー情報
-                      </Heading>
-                      <Text pt="2" fontSize="sm">
-                        <Code>{JSON.stringify(user, null, 2)}</Code>
-                      </Text>
-                    </Box>
-                  </Stack>
-                </CardBody>
-              </Card>
-            </Box>
-          ) : (
-            <Box w="100%">
-              <Stack spacing={4} align="center" pb={6}>
-                <Link href="/api/auth/login">
-                  <Button variant="solid" colorScheme="blackAlpha" size="lg">
-                    ログイン
-                  </Button>
-                </Link>
-              </Stack>
-              <Card>
-                <CardHeader>
-                  <Wrap>
-                    <Heading size="md">未ログイン状態です</Heading>
-                  </Wrap>
-                </CardHeader>
-
-                <CardBody>
-                  <Stack divider={<StackDivider />} spacing="4">
-                    <Box>
-                      <Heading size="xs" textTransform="uppercase">
-                        ユーザー名
-                      </Heading>
-                      <Text pt="2" fontSize="sm">
-                        ログインすると表示されます
-                      </Text>
-                    </Box>
-                    <Box>
-                      <Heading size="xs" textTransform="uppercase">
-                        メールアドレス
-                      </Heading>
-                      <Text pt="2" fontSize="sm">
-                        ログインすると表示されます
-                      </Text>
-                    </Box>
-                    <Box>
-                      <Heading size="xs" textTransform="uppercase">
-                        ユーザー情報
-                      </Heading>
-                      <Text pt="2" fontSize="sm">
-                        ログインすると表示されます
-                      </Text>
-                    </Box>
-                  </Stack>
-                </CardBody>
-              </Card>
-            </Box>
-          )}
-        </div>
+        <div className={styles.center}>{isLoading ? <div>Loading...</div> : <LoginStatCard user={user} />}</div>
 
         <div className={styles.grid}>
           <a
